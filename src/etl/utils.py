@@ -7,11 +7,11 @@ load_dotenv()
 
 def get_engine():
     """
-    Returns SQLAlchemy engine using credentials from .env
+    Returns SQLAlchemy engine for ETL (not Airflow metadata)
     """
     POSTGRES_USER = os.environ["POSTGRES_USER"]
     POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
-    POSTGRES_DB = os.environ["POSTGRES_DB"]
+    POSTGRES_DB = os.environ.get("ETL_POSTGRES_DB", "etl_db")
     POSTGRES_HOST = os.environ["POSTGRES_HOST"]
     POSTGRES_PORT = os.environ["POSTGRES_PORT"]
 
