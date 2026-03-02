@@ -8,11 +8,14 @@ DAG Highlights:
 - Gold layer: derive_gold (timesheet_derived)
 
 """
-
+import sys
 import os
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '../src'))
+
 from etl.extract_bronze import extract_employee, extract_timesheets
 from etl.transform_silver import transform_employee, transform_timesheet
 from etl.derived_gold import run_all as derive_gold
@@ -66,5 +69,10 @@ with DAG(
     )
 
     # DAG Order 
-    [extract_employee_task, extract_timesheets_task] >> [
-        transform_employee_task, transform_timesheet_task] >> derive_gold_task
+
+    # Extract -> Transform
+    extract_employee_task >> transform_employee_task
+    extract_timesheets_task >> transform_timesheet_task
+
+    # Transform -> Gold
+    [transform_employee_task, transform_timesheet_task] >> derive_gold_task
