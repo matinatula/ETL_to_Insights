@@ -1,0 +1,15 @@
+[2026-03-03T08:39:20.572+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.derive_gold manual__2026-03-03T08:38:41.567326+00:00 [queued]>
+[2026-03-03T08:39:20.579+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.derive_gold manual__2026-03-03T08:38:41.567326+00:00 [queued]>
+[2026-03-03T08:39:20.580+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-03T08:39:20.591+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): derive_gold> on 2026-03-03 08:38:41.567326+00:00
+[2026-03-03T08:39:20.596+0000] {standard_task_runner.py:60} INFO - Started process 199 to run task
+[2026-03-03T08:39:20.600+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'derive_gold', 'manual__2026-03-03T08:38:41.567326+00:00', '--job-id', '79', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpdyxh70wb']
+[2026-03-03T08:39:20.603+0000] {standard_task_runner.py:88} INFO - Job 79: Subtask derive_gold
+[2026-03-03T08:39:20.655+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.derive_gold manual__2026-03-03T08:38:41.567326+00:00 [running]> on host ad601963dc0b
+[2026-03-03T08:39:20.993+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etl_user' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='derive_gold' AIRFLOW_CTX_EXECUTION_DATE='2026-03-03T08:38:41.567326+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-03T08:38:41.567326+00:00'
+[2026-03-03T08:39:21.022+0000] {derived_gold.py:36} INFO - Loaded 610 rows with columns: ['timesheet_id', 'client_employee_id', 'department_id', 'department_name', 'home_department_id', 'home_department_name', 'pay_code', 'punch_in_comment', 'punch_out_comment', 'hours_worked', 'punch_apply_date', 'punch_in_datetime', 'punch_out_datetime', 'scheduled_start_datetime', 'scheduled_end_datetime', 'scheduled_weekly_hour']
+[2026-03-03T08:39:21.101+0000] {derived_gold.py:55} INFO - Derived timesheet metrics loaded -> timesheet_derived (610 rows)
+[2026-03-03T08:39:21.101+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-03T08:39:21.112+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=derive_gold, execution_date=20260303T083841, start_date=20260303T083920, end_date=20260303T083921
+[2026-03-03T08:39:21.169+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-03T08:39:21.186+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

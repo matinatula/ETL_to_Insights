@@ -15,88 +15,100 @@ Transform Silver Layer (ETL step)
 - Preserves schema and uses chunks for large datasets
 """
 
+import logging
 from etl.db import get_engine
 import pandas as pd
-import logging
 
-# Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s"
 )
 
-engine = get_engine()  # ETL DB connection
+engine = get_engine()
+CHUNKSIZE = 5000
 
-CHUNKSIZE = 5000  # rows per chunk
 
-
+# =========================
+# EMPLOYEE TRANSFORM
+# =========================
 def transform_employee():
-    """
-    Transform staging_employee → employee table (Silver layer)
-    """
     try:
-        # Read full staging table
-        query = "SELECT * FROM staging_employee"
-        df_iter = pd.read_sql(query, engine, chunksize=CHUNKSIZE)
+        df_iter = pd.read_sql(
+            "SELECT * FROM staging_employee",
+            engine,
+            chunksize=CHUNKSIZE
+        )
 
-        # Truncate target table first (preserves schema)
+        # Truncate but preserve schema
         with engine.begin() as conn:
             conn.execute("TRUNCATE TABLE employee RESTART IDENTITY CASCADE")
 
         total_rows = 0
+
         for chunk in df_iter:
-            # Trim all string columns
-            for col in chunk.select_dtypes(include="object"):
-                chunk[col] = chunk[col].astype(str).str.strip()
 
-            # Drop duplicates
+            # SAFE TRIM (no astype, no crash)
+            for col in chunk.columns:
+                if chunk[col].dtype == "object":
+                    chunk[col] = chunk[col].apply(
+                        lambda x: x.strip() if isinstance(x, str) else x
+                    )
+
             chunk.drop_duplicates(subset="client_employee_id", inplace=True)
+            chunk.dropna(axis=1, how="all", inplace=True)
+            chunk.dropna(axis=0, how="all", inplace=True)
 
-            # Drop columns/rows with all NULL
-            chunk.dropna(axis=1, how='all', inplace=True)
-            chunk.dropna(axis=0, how='all', inplace=True)
+            chunk = chunk[chunk["client_employee_id"].notna()]
 
-            # Ensure client_employee_id is not null
-            chunk = chunk[chunk['client_employee_id'].notna()]
-
-            # Convert dates
-            date_cols = ['dob', 'hire_date', 'recent_hire_date',
-                         'anniversary_date', 'term_date', 'job_start_date']
+            # Dates
+            date_cols = [
+                "dob", "hire_date", "recent_hire_date",
+                "anniversary_date", "term_date", "job_start_date"
+            ]
             for col in date_cols:
                 if col in chunk.columns:
-                    chunk[col] = pd.to_datetime(chunk[col], errors='coerce')
+                    chunk[col] = pd.to_datetime(chunk[col], errors="coerce")
 
-            # Convert numeric columns
-            num_cols = ['years_of_experience',
-                        'scheduled_weekly_hour', 'active_status', 'job_code']
+            # Numeric
+            num_cols = [
+                "years_of_experience",
+                "scheduled_weekly_hour",
+                "active_status",
+                "job_code"
+            ]
             for col in num_cols:
                 if col in chunk.columns:
-                    chunk[col] = pd.to_numeric(chunk[col], errors='coerce')
+                    chunk[col] = pd.to_numeric(chunk[col], errors="coerce")
 
-            # Append to Silver table
             chunk.to_sql("employee", engine, if_exists="append", index=False)
-            total_rows += len(chunk)
-            logging.info(f"Processed {len(chunk)} rows for employee")
 
-        logging.info(f"Total rows loaded into employee: {total_rows}")
+            total_rows += len(chunk)
+            logging.info(f"Inserted {len(chunk)} employee rows")
+
+        logging.info(f"Total employee rows loaded: {total_rows}")
 
     except Exception as e:
-        logging.error(f"Failed to transform employee: {e}")
+        logging.error(f"Employee transform failed: {e}")
+        raise
 
 
+# =========================
+# TIMESHEET TRANSFORM
+# =========================
 def transform_timesheet():
-    """
-    Transform staging_timesheet -> timesheet table (Silver layer)
-    """
     try:
-        query = "SELECT * FROM staging_timesheet"
-        df_iter = pd.read_sql(query, engine, chunksize=CHUNKSIZE)
+        df_iter = pd.read_sql(
+            "SELECT * FROM staging_timesheet",
+            engine,
+            chunksize=CHUNKSIZE
+        )
 
-        # Load valid employee IDs once
+        # Load valid employee IDs
         employee_df = pd.read_sql(
             "SELECT client_employee_id FROM employee",
             engine
         )
+
         valid_employee_ids = set(
             employee_df["client_employee_id"].astype(str)
         )
@@ -109,54 +121,52 @@ def transform_timesheet():
 
         for chunk in df_iter:
 
-            # Trim string columns
-            for col in chunk.select_dtypes(include="object"):
-                chunk[col] = chunk[col].astype(str).str.strip()
+            # SAFE TRIM
+            for col in chunk.columns:
+                if chunk[col].dtype == "object":
+                    chunk[col] = chunk[col].apply(
+                        lambda x: x.strip() if isinstance(x, str) else x
+                    )
 
-            # Drop duplicates
             chunk.drop_duplicates(inplace=True)
+            chunk.dropna(axis=1, how="all", inplace=True)
+            chunk.dropna(axis=0, how="all", inplace=True)
 
-            # Drop empty rows/columns
-            chunk.dropna(axis=1, how='all', inplace=True)
-            chunk.dropna(axis=0, how='all', inplace=True)
+            chunk = chunk[chunk["client_employee_id"].notna()]
 
-            # Ensure employee id not null
-            chunk = chunk[chunk['client_employee_id'].notna()]
-
-            # Convert dates
+            # Dates
             date_cols = [
-                'punch_apply_date',
-                'punch_in_datetime',
-                'punch_out_datetime',
-                'scheduled_start_datetime',
-                'scheduled_end_datetime'
+                "punch_apply_date",
+                "punch_in_datetime",
+                "punch_out_datetime",
+                "scheduled_start_datetime",
+                "scheduled_end_datetime"
             ]
             for col in date_cols:
                 if col in chunk.columns:
-                    chunk[col] = pd.to_datetime(chunk[col], errors='coerce')
+                    chunk[col] = pd.to_datetime(chunk[col], errors="coerce")
 
-            # Convert numeric
-            if 'hours_worked' in chunk.columns:
-                chunk['hours_worked'] = pd.to_numeric(
-                    chunk['hours_worked'],
-                    errors='coerce'
+            # Numeric
+            if "hours_worked" in chunk.columns:
+                chunk["hours_worked"] = pd.to_numeric(
+                    chunk["hours_worked"],
+                    errors="coerce"
                 )
 
-            # FILTER INVALID EMPLOYEES (THIS FIXES FK ERROR)
-            before_filter = len(chunk)
+            # FK FILTER
+            before = len(chunk)
 
             chunk = chunk[
-                chunk["client_employee_id"].astype(
-                    str).isin(valid_employee_ids)
+                chunk["client_employee_id"].astype(str)
+                .isin(valid_employee_ids)
             ]
 
-            skipped = before_filter - len(chunk)
+            skipped = before - len(chunk)
             total_skipped += skipped
 
-            if len(chunk) == 0:
+            if chunk.empty:
                 continue
 
-            # Insert valid rows
             chunk.to_sql(
                 "timesheet",
                 engine,
@@ -166,11 +176,11 @@ def transform_timesheet():
             )
 
             total_inserted += len(chunk)
-            logging.info(f"Inserted {len(chunk)} rows")
+            logging.info(f"Inserted {len(chunk)} timesheet rows")
 
         logging.info(f"Total inserted: {total_inserted}")
         logging.warning(f"Total skipped (missing employee): {total_skipped}")
 
     except Exception as e:
-        logging.error(f"Failed to transform timesheet: {e}")
-        raise  # IMPORTANT → makes Airflow fail properly
+        logging.error(f"Timesheet transform failed: {e}")
+        raise

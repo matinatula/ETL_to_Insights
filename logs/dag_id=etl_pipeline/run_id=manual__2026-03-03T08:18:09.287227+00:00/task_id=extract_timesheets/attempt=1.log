@@ -1,0 +1,99 @@
+[2026-03-03T08:18:10.809+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.extract_timesheets manual__2026-03-03T08:18:09.287227+00:00 [queued]>
+[2026-03-03T08:18:10.821+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.extract_timesheets manual__2026-03-03T08:18:09.287227+00:00 [queued]>
+[2026-03-03T08:18:10.822+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-03T08:18:10.842+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract_timesheets> on 2026-03-03 08:18:09.287227+00:00
+[2026-03-03T08:18:10.857+0000] {standard_task_runner.py:60} INFO - Started process 335 to run task
+[2026-03-03T08:18:10.868+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'extract_timesheets', 'manual__2026-03-03T08:18:09.287227+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmpqascna3u']
+[2026-03-03T08:18:10.871+0000] {standard_task_runner.py:88} INFO - Job 70: Subtask extract_timesheets
+[2026-03-03T08:18:10.954+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.extract_timesheets manual__2026-03-03T08:18:09.287227+00:00 [running]> on host ad601963dc0b
+[2026-03-03T08:18:11.941+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etl_user' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='extract_timesheets' AIRFLOW_CTX_EXECUTION_DATE='2026-03-03T08:18:09.287227+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-03T08:18:09.287227+00:00'
+[2026-03-03T08:18:11.945+0000] {extract_bronze.py:66} INFO - Starting timesheet extraction from folder: /opt/airflow/data/timesheets
+[2026-03-03T08:18:12.332+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:12.564+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:12.777+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:13.043+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:13.373+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:13.588+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:13.793+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:13.966+0000] {extract_bronze.py:88} INFO - Loaded 3957 rows from /opt/airflow/data/timesheets/timesheet_202510161124.csv to staging_timesheet
+[2026-03-03T08:18:14.239+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:14.553+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:14.802+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:15.042+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:15.282+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:15.524+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:15.763+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:16.052+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:16.554+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:17.490+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:17.837+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:18.185+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:19.018+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:19.277+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:19.889+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:20.211+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:20.474+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:20.730+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:21.020+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:21.276+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:21.532+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:21.782+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:22.024+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:22.277+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:22.542+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:22.913+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:23.215+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:23.453+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:23.697+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:24.012+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:24.278+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:24.517+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:24.758+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:25.012+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:25.263+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:25.507+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:25.765+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:26.212+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:26.457+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:26.709+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:26.958+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:27.234+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:27.465+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:27.702+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:27.943+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:28.204+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:28.448+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:28.697+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:28.925+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:29.243+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:29.490+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:29.730+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:29.959+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:30.184+0000] {extract_bronze.py:88} INFO - Loaded 4921 rows from /opt/airflow/data/timesheets/timesheet_202509151540.csv to staging_timesheet
+[2026-03-03T08:18:30.406+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:30.618+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:30.836+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:31.046+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:31.267+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:31.476+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:31.685+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:31.891+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:32.170+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:32.389+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:32.703+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:32.739+0000] {extract_bronze.py:88} INFO - Loaded 435 rows from /opt/airflow/data/timesheets/timesheet_202510161122.csv to staging_timesheet
+[2026-03-03T08:18:33.027+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:33.333+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:33.677+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:34.045+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:34.617+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:34.894+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:35.144+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:35.436+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:35.971+0000] {extract_bronze.py:88} INFO - Loaded 5000 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:36.127+0000] {extract_bronze.py:88} INFO - Loaded 3258 rows from /opt/airflow/data/timesheets/timesheet_202510161121.csv to staging_timesheet
+[2026-03-03T08:18:36.128+0000] {extract_bronze.py:93} INFO - Total timesheet rows loaded: 412571
+[2026-03-03T08:18:36.128+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-03T08:18:36.157+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=extract_timesheets, execution_date=20260303T081809, start_date=20260303T081810, end_date=20260303T081836
+[2026-03-03T08:18:36.211+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-03T08:18:36.240+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

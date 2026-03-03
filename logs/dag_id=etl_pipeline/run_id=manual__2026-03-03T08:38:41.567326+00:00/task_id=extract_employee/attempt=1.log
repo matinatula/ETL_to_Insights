@@ -1,0 +1,16 @@
+[2026-03-03T08:38:43.930+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_pipeline.extract_employee manual__2026-03-03T08:38:41.567326+00:00 [queued]>
+[2026-03-03T08:38:43.951+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_pipeline.extract_employee manual__2026-03-03T08:38:41.567326+00:00 [queued]>
+[2026-03-03T08:38:43.953+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-03-03T08:38:43.981+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): extract_employee> on 2026-03-03 08:38:41.567326+00:00
+[2026-03-03T08:38:44.001+0000] {standard_task_runner.py:60} INFO - Started process 184 to run task
+[2026-03-03T08:38:44.013+0000] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'etl_pipeline', 'extract_employee', 'manual__2026-03-03T08:38:41.567326+00:00', '--job-id', '75', '--raw', '--subdir', 'DAGS_FOLDER/etl_dag.py', '--cfg-path', '/tmp/tmp13bw9ofm']
+[2026-03-03T08:38:44.024+0000] {standard_task_runner.py:88} INFO - Job 75: Subtask extract_employee
+[2026-03-03T08:38:44.187+0000] {task_command.py:423} INFO - Running <TaskInstance: etl_pipeline.extract_employee manual__2026-03-03T08:38:41.567326+00:00 [running]> on host ad601963dc0b
+[2026-03-03T08:38:44.334+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etl_user' AIRFLOW_CTX_DAG_ID='etl_pipeline' AIRFLOW_CTX_TASK_ID='extract_employee' AIRFLOW_CTX_EXECUTION_DATE='2026-03-03T08:38:41.567326+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-03T08:38:41.567326+00:00'
+[2026-03-03T08:38:44.338+0000] {extract_bronze.py:38} INFO - Starting employee extraction from: /opt/airflow/data/employee_202510161125.csv
+[2026-03-03T08:38:44.890+0000] {extract_bronze.py:54} INFO - Loaded 50 rows to staging_employee
+[2026-03-03T08:38:44.893+0000] {extract_bronze.py:56} INFO - Total employee rows loaded: 50
+[2026-03-03T08:38:44.894+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-03-03T08:38:44.920+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=etl_pipeline, task_id=extract_employee, execution_date=20260303T083841, start_date=20260303T083843, end_date=20260303T083844
+[2026-03-03T08:38:44.981+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-03-03T08:38:45.040+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
