@@ -28,9 +28,7 @@ engine = get_engine()
 CHUNKSIZE = 5000
 
 
-# =========================
 # EMPLOYEE TRANSFORM
-# =========================
 def transform_employee():
     try:
         df_iter = pd.read_sql(
@@ -92,9 +90,7 @@ def transform_employee():
         raise
 
 
-# =========================
 # TIMESHEET TRANSFORM
-# =========================
 def transform_timesheet():
     try:
         df_iter = pd.read_sql(

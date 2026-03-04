@@ -1,0 +1,20 @@
+# Data files
+data/
+*.csv
+
+# Environment variables
+.env
+
+# Logs
+logs/
+
+# Python cache
+__pycache__/
+*.pyc
+api/__pycache__/
+
+# Virtual environment
+venv/
+logs/scheduler/2026-03-04/etl_dag.py.log
+logs/dag_processor_manager/dag_processor_manager.log
+src/etl/__pycache__/extract_bronze.cpython-38.pyc

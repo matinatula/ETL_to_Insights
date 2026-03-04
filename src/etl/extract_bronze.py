@@ -26,9 +26,7 @@ import os
 load_dotenv()
 log = LoggingMixin().log
 
-# =============================
 # Config
-# =============================
 
 SOURCE_TYPE = os.getenv("SOURCE_TYPE", "local")
 
@@ -46,9 +44,7 @@ engine = get_engine()
 CHUNKSIZE = 5000
 
 
-# =============================
 # MinIO Client
-# =============================
 
 def get_minio_client():
     return boto3.client(
@@ -59,9 +55,7 @@ def get_minio_client():
     )
 
 
-# =============================
 # Employee Extraction
-# =============================
 
 def extract_employee():
     log.info(f"Starting employee extraction (SOURCE_TYPE={SOURCE_TYPE})")
@@ -104,9 +98,7 @@ def extract_employee():
         log.exception(f"Failed to extract employee: {e}")
 
 
-# =============================
 # Timesheet Extraction
-# =============================
 
 def extract_timesheets():
     log.info(f"Starting timesheet extraction (SOURCE_TYPE={SOURCE_TYPE})")
