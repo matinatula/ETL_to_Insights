@@ -232,7 +232,7 @@ We need to create ingestion landing tables to be used before Silver-level cleani
 
 ## 5) API 
 
-The API is designed to satisfy two core requirements. The first one is full CRUD operations for `employee` whereas the second one is Read-only access for `timesheet` with employee/date filters.
+The API is designed to satisfy two core requirements. The first one is full CRUD operations for `employee` whereas the second one is read-only access for `timesheet` with employee/date filters.
 
 Authentication and authorization are enforced with JWT and role-based access:
 - `admin`: can create/update/delete employee records and register users
