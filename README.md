@@ -14,8 +14,6 @@ This project implements an HR analytics data platform using a medallion-style ET
 
 ### 1.1 Technology Choices
 
-### 1.1 Technology Choices
-
 1. I used **Python** as the primary language for ETL and API development because I wanted the entire stack consisting of ingestion, transformation, API, and orchestration to live in one language without context-switching. I considered Java and Scala since they're common in enterprise data engineering, but the boilerplate overhead and slower iteration cycle weren't worth it for a project at this scale. Python's ecosystem (pandas, SQLAlchemy, FastAPI, Airflow) already covered everything I needed, and keeping it consistent made debugging and dependency management significantly simpler.
 
 2. I chose **PostgreSQL** as the analytical and operational data store because I needed a database that could handle relational integrity, complex joins, and window functions across the Silver and Gold layers, not just simple reads and writes. I ruled out SQLite early since it lacks concurrent write support and struggles with analytical queries at scale. Cloud warehouses like BigQuery or Snowflake were overkill for a local-first batch pipeline and would have added unnecessary infrastructure cost. Between MySQL and PostgreSQL, I chose PostgreSQL because of its stricter type enforcement, better constraint handling, and stronger support for the kind of data quality guarantees that matter when cleaning messy HR source data.
